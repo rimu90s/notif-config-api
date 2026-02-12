@@ -1,5 +1,7 @@
 const express = require("express");
 
+const configRoutes = require("./routes/config.routes");
+
 const app = express();
 
 app.use(express.json());
@@ -10,5 +12,7 @@ app.get("/", (req, res) => {
     message: "API is running",
   });
 });
+
+app.use("/configs", configRoutes);
 
 module.exports = app;
