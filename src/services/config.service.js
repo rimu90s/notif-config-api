@@ -1,15 +1,16 @@
 const configRepository = require("../repositories/config.repository");
+const AppError = require("../utils/appError");
 
 class ConfigService {
   async createConfig(data) {
     if (!data.key || !data.value) {
-      throw new Error("Key and value are required");
+      throw new AppError("Key and value are required", 400);
     }
 
     const existing = await configRepository.findByKey(data.key);
 
     if (existing) {
-      throw new Error("Configuration key already exists");
+      throw new AppError("Configuration key already exists", 400);
     }
 
     return await configRepository.create(data);
@@ -23,7 +24,7 @@ class ConfigService {
     const config = await configRepository.findById(id);
 
     if (!config) {
-      throw new Error("Configuration not found");
+      throw new AppError("Configuration not found", 404);
     }
 
     return config;
@@ -33,7 +34,7 @@ class ConfigService {
     const config = await configRepository.findById(id);
 
     if (!config) {
-      throw new Error("Configuration not found");
+      throw new AppError("Configuration not found", 404);
     }
 
     return await configRepository.update(id, data);
@@ -43,7 +44,7 @@ class ConfigService {
     const config = await configRepository.findById(id);
 
     if (!config) {
-      throw new Error("Configuration not found");
+      throw new AppError("Configuration not found", 404);
     }
 
     await configRepository.delete(id);
