@@ -4,6 +4,7 @@ const swaggerSpec = require("./config/swagger");
 
 const configRoutes = require("./routes/config.routes");
 const errorHandler = require("./middlewares/error.middleware");
+const notificationRoutes = require("./routes/notification.routes");
 
 const app = express();
 
@@ -23,5 +24,7 @@ app.use("/configs", configRoutes);
 
 // Global error handler
 app.use(errorHandler);
+
+app.use("/notifications", notificationRoutes);
 
 module.exports = app;

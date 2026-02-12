@@ -4,6 +4,7 @@ const app = require("./app");
 const { connectDB, sequelize } = require("./config/database");
 
 require("./models/config.model");
+require("./models/notification.model");
 
 const PORT = process.env.PORT || 3000;
 
