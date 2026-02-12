@@ -1,7 +1,7 @@
 {
   "name": "notif-config-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Configuration and Notification REST API built with Express, PostgreSQL, Sequelize, Swagger, and Jest.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
