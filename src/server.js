@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv-flow").config();
 
 const app = require("./app");
 const { connectDB, sequelize } = require("./config/database");
@@ -9,18 +9,20 @@ require("./models/notification.model");
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
-  try {
-    await connectDB();
-    await sequelize.sync({ alter: true });
-    console.log("Database synced");
+  await connectDB();
 
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("Server startup failed:", error.message);
-    process.exit(1);
+  if (process.env.NODE_ENV === "development") {
+    await sequelize.sync({ alter: true });
+    console.log("Database synced (development only)");
   }
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log("Loaded ENV:", process.env.NODE_ENV);
+    console.log("DB Name:", process.env.DB_NAME);
+
+  });
 };
 
 startServer();
