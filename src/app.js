@@ -1,4 +1,7 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
+
 const configRoutes = require("./routes/config.routes");
 const errorHandler = require("./middlewares/error.middleware");
 
@@ -13,9 +16,12 @@ app.get("/", (req, res) => {
   });
 });
 
+// Swagger route
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use("/configs", configRoutes);
 
-// 🔥 Global Error Handler (HARUS PALING BAWAH)
+// Global error handler
 app.use(errorHandler);
 
 module.exports = app;

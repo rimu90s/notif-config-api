@@ -8,6 +8,34 @@ const {
   updateConfigSchema,
 } = require("../validators/config.validator");
 
+/**
+ * @swagger
+ * /configs:
+ *   post:
+ *     summary: Create new configuration
+ *     tags: [Configurations]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - key
+ *               - value
+ *             properties:
+ *               key:
+ *                 type: string
+ *               value:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Configuration created
+ */
+
+
 router.post(
   "/",
   validate(createConfigSchema),
