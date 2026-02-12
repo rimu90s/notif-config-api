@@ -1,6 +1,6 @@
 const express = require("express");
-
 const configRoutes = require("./routes/config.routes");
+const errorHandler = require("./middlewares/error.middleware");
 
 const app = express();
 
@@ -14,5 +14,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/configs", configRoutes);
+
+// 🔥 Global Error Handler (HARUS PALING BAWAH)
+app.use(errorHandler);
 
 module.exports = app;
