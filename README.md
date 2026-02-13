@@ -1,3 +1,14 @@
+## Live Demo
+
+API Demo (Production Environment):
+
+https://notif-config-api.onrender.com/api-docs
+
+Swagger documentation dapat digunakan langsung untuk mencoba endpoint (Try It Out).
+
+Catatan:
+Environment ini disediakan untuk keperluan evaluasi dan demonstrasi teknis.
+
 # Notif Config API
 
 RESTful API service for Configuration and Notification management.
